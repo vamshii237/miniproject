@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+    .edit-btn{
+        background-color:#ff0158;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer; border-radius: 40px;
+
+    }
+</style>
+
+    <form method="POST">
+        {% csrf_token %}
+            <legend class="border-bottom mb-4"><h1 style = "text-align: center;" >Ask your doubt here!</h1></legend>
+          
+<table style="text-align: center; margin-left: auto; margin-right: auto; margin-top: 40px; border-spacing: 30px;">
+    <tr>
+        <td>
+            <label for="id_title">Question:</label>
+        </td>
+        <td>
+            <input type="text" name="question" maxlength="300" required id="id_question" style="width: 280px">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="id_content" >Description:</label>
+        </td>
+        <td>
+            <textarea name="desc" cols="40" rows="10" required id="id_desc"> </textarea>
+        </td>
+    </tr>
+   
+    <tr style="text-align: center;">
+        <td colspan="2">
+            <button class="edit-btn" name="Publish" type="submit">Save</button>
+            <small class="text-muted">
+                <a class="edit-btn" href="{% url 'list-faq' %}">Back</a>
+            </small>
+        </td>
+    </form>
+{% endblock %}
+
+               
+<!--table style="text-align: center; margin-left: auto; margin-right: auto; margin-top: 80px; border-spacing: 30px;">
+    <tr>
+        <td>
+            <label for="id_title">Question:</label>
+        </td>
+        <td>
+            <input type="text" name="title" maxlength="300" required id="id_title" size = "67px"> 
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="id_content" >Description:</label>
+        </td>
+        <td>
+            <textarea name="content" cols="70" rows="10" required id="id_content" size="90px"></textarea>
+        </td>
+    </tr>
+   
+    <tr>
+        <td>
+            <button class="btn btn-outline-info" name="Publish" type="submit" style = "background-color: rgb(245, 85, 112);
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer; border-radius: 12px;">Save</button>
+            
+        </td-->
+       

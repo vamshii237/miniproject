@@ -1,0 +1,208 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Vealize | Visualize Everything at one place</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://kit.fontawesome.com/0b1453f29b.js" crossorigin="anonymous"></script>
+	<link rel='icon' href='img/logo.png' type="image/png">
+	<meta property="og:type" content="website">
+    <meta property="og:url" content="https://vealize.my.to/">
+    <meta property="og:title" content="Vealize | Visualize Everything at one place">
+    <meta property="og:description" content="Vealize is a website which provides free tools that can help user visualize different and unique things.">
+    <meta property="og:image" content="img/page1.png">
+	<meta name="twitter:card" content="summary_large_image">
+
+	<style>
+        .edit-btn{
+            background-color:#ff0158;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer; border-radius: 40px;">
+
+        }
+    </style>
+</head>
+<body>
+	<header class="header">
+		<h1>Rankers choice</h1>
+		<ul>
+			<li><a class="h active" id="homeNav" href="#">Home</a></li>
+			<li><a class="h" id="aboutNav" href="#choose">About</a></li>
+			<li><a class="h" id="featuresNav"href="#features">Features</a></li>
+			<li><a class="h" id="contactNav" href="#contact">Contact</a></li>
+			{% if user.is_authenticated %}
+                  
+            <li><a class="h" href="{% url 'profile'%}" style="margin: 20px 0 0 0;">Hi {{request.user.username}}</a></li>
+              <li><a class="h" href="{% url 'logout'%}" style="margin: 20px 0 0 0;">logout</a></li>
+            {% else %}
+        <li><a class="h" href="{% url 'login'%}" style="margin: 20px 0 0 0;">Login</a></li>
+        {% endif %}
+		</ul>
+    
+	</header>
+	<div id="content" class="content">
+		<h1 id="homePageTitle">Rankers choice</h1>
+		<p>Notes, Syllabus, and many more Everything At One Place</p>
+		<button onclick="location.href = '#choose'">Get Started</button>
+	</div>
+	<div id="choose" class="choose" style = "text-align: center;">
+		<h1>Hey there! Welcome to Rankers choice</h1>
+		<p class="chooseTitle" style = "text-align: center;">About Us</p>
+		<div class="chooseDesc">
+			<p><strong>Rankers choice</strong> is a free-to-use platform for everyone.
+			<br>At <strong>Rankers choice</strong> we offer your subject notes, syllabus papers, various question papers.
+			<br> Not only these through this platform you can clear your doubts, post some blogs also.
+		</div>
+	</div>
+	<div id="features" class="features">
+		<div class="featuresTitle">
+			<h1>What we provide?</h1>
+		</div>
+		<div class="featureCardWrapper">
+			<div class="featureCard">
+				<h2>Enotes</h2>
+				<p>Get the notes you need</p>
+				<a class="edit-btn" href="{% url 'enotes' %}">Take me there</a>
+			</div>
+			<div class="featureCard">
+				<h2>Blogs</h2>
+				<p>View the blogs! and also create one.</p>
+				<a class="edit-btn" href="{% url 'blog-home' %}">Take me there</a>
+			</div>
+			<div class="featureCard">
+				<h2>Q&A</h2>
+				<p>Clear your doubts. Also help others to clear their doubts</p>
+				<a class="edit-btn" href="{% url 'list-faq' %}">Take me there</a>
+			</div>
+		</div>
+		<div class="featureCardWrapper">
+			<div class="featureCard">
+				<h2>Question Papers</h2>
+				<p>Know more questions. Build your strategy.</p>
+				<a class="edit-btn" href="{% url 'question' %}">Take me there</a>
+			</div>
+		</div>
+	</div>
+	<div id="contact" class="contact">
+		<div class="contactTitle">
+			<h1>Message Us</h1>
+			<p>Got some suggestion/ issues? We would like to <span>hear from you</span></p>
+		</div>
+		<div class="contactBlock">
+			<input id="nameInput" class="nameInput" placeholder="Your Name *">
+			<input id="emailInput" class="emailInput" placeholder="Your Email *">
+			<textarea id="msgInput" class="msgInput" placeholder="Your Message *"></textarea>
+			<button onclick="sendMsg();">Send Message</button>
+		</div>
+	</div>
+	<div id="follow" class="follow">
+		<div class="followTitle">
+			<h1>Follow Us</h1>
+			<p>Stay updated about the latest updates of Vealize</p>
+		</div>
+		<div class="followBlock">
+			<div class="sm">
+				<i class="fab fa-facebook-f"></i>
+				<p>Facebook</p>
+			</div>
+			<div class="sm">
+				<i class="fab fa-instagram"></i>
+				<p>Instagram</p>
+			</div>
+			<div class="sm">
+				<i class="fab fa-twitter"></i>
+				<p>Twitter</p>
+			</div>
+			<div class="sm">
+				<i class="fab fa-youtube"></i>
+				<p>Youtube</p>
+			</div>
+			<div class="sm">
+				<i class="far fa-envelope"></i>
+				<p>Email</p>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+	var cat = $('.header').offset().top;
+
+	$(window).scroll(function() {                  
+	var cs = $(window).scrollTop(); 
+	if (cs > cat) {           
+	    $('.header').css({                      
+	        position: 'fixed',
+	        top: '0',
+	        left: '0',
+	        width: '100%',
+	        background: 'white'
+	    });
+	    $('.header').css("padding-top", "5px");
+      $('.header').css("padding-bottoms", "0px");
+	    $('.header').css("color", "black");
+	    $('.header').css("border-bottom", "1px solid #696969");
+	    $('.h').css("color", "black");
+	    $('.h.active').css("color", "#ff0158");
+	} else {                                   
+	    $('.header').css({                     
+	        position: 'relative',
+	        width: 'auto'
+	    });
+	    $('.header').css('background', '#03030e')
+	    $('.header').css("padding-top", "15px");
+	    $('.header').css("color", "white");
+	    $('.header').css("border-bottom", "none");
+	    $('.h').css("color", "white");
+	    $('.h.active').css("color", "#ff0158");
+	}
+	var ch = $('.choose').offset().top;
+	var hm = $('.content').offset().top;
+	var fe = $('.features').offset().top;
+	var co = $('.contact').offset().top;
+
+	if (cs >= (co - 150))
+	{
+		$('.active').removeClass('active')
+		$('#contactNav').addClass('active')
+	} else if (cs >= (fe - 150))
+	{
+		$('.active').removeClass('active')
+		$('#featuresNav').addClass('active')
+	} else if (cs >= (ch - 100))
+	{
+		$('.active').removeClass('active')
+		$('#aboutNav').addClass('active')
+	} else if (cs >= hm)
+	{
+		$('.active').removeClass('active')
+		$('#homeNav').addClass('active')
+	}
+	});
+	$('.fa-facebook-f').on('click', function(){location.href = 'https://www.facebook.com/watch/?ref=search&v=1871380356472917'})
+	$('.fa-instagram').on('click', function(){location.href = 'https://www.instagram.com/p/ByxLEsQnrzY/'})
+	$('.fa-twitter').on('click', function(){location.href = 'https://twitter.com/TechWithTimm'})
+	$('.fa-youtube').on('click', function(){location.href = 'https://www.youtube.com/watch?v=eGE-tFalwpA'})
+	$('.fa-envelope').on('click', function(){location.href = 'mailto:randomemail@fineloans.org'})
+	</script>
+</body>
+<script type="text/javascript">
+	function sendMsg(){
+		var name = document.getElementById("nameInput").value.trim()
+		var email = document.getElementById("emailInput").value.trim()
+		var msg = document.getElementById("msgInput").value.trim()
+		var form = new FormData();
+		form.append("name", name)
+		form.append("email", email)
+		form.append("msg", msg)
+		fetch("https://vealizeapi.root.sx/contact", {method: "post", body: form})
+			.then(e => window.alert("Message sent successfully!"))
+	}
+</script>
+</html>

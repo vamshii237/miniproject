@@ -1,0 +1,884 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+	<title>Vealize | Visualize Everything at one place</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://kit.fontawesome.com/0b1453f29b.js" crossorigin="anonymous"></script>
+	<link rel='icon' href='img/logo.png' type="image/png">
+	<meta property="og:type" content="website">
+    <meta property="og:url" content="https://vealize.my.to/">
+    <meta property="og:title" content="Vealize | Visualize Everything at one place">
+    <meta property="og:description" content="Vealize is a website which provides free tools that can help user visualize different and unique things.">
+    <meta property="og:image" content="img/page1.png">
+	<meta name="twitter:card" content="summary_large_image">
+    <style type="text/css" media="screen">
+        * {
+          box-sizing: border-box;
+        }
+        
+        .row {
+          margin-left:-5px;
+          margin-right:-5px;
+        }
+          
+        .column {
+          float: left;
+          width: 50%;
+          padding: 5px;
+        }
+        
+        /* Clearfix (clear floats) */
+        .row::after {
+          content: "";
+          clear: both;
+          display: table;
+        }
+        
+        table {
+          border-collapse: collapse;
+          border-spacing: 0;
+          width: 100%;
+          margin-left: auto;
+          margin-right: auto;
+          border: 1px solid #ddd;
+        }
+        
+        th, td {
+          text-align: center;
+          padding: 16px;
+        }
+        
+        tr:nth-child(even) {
+          background-color: #f2f2f2;
+        }
+
+        .dropbtn {
+  color: rgb(17, 17, 122);
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+        
+          #t1 tr:nth-child(odd) {background-color: #ffcccb;}
+          #t1 tr:nth-child(even) {background-color: #ffffe0;}
+          
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #febdbc;}
+
+    </style>
+</head>
+<body>
+	<header class="header">
+		<h1>Rankers choice</h1>
+		<ul>
+			<li><a class="h active" id="homeNav" href="{% url 'home' %}">Home</a></li>
+            <li><a class="h" href="{% url 'enotes' %}">Enotes</a></li>
+            <li><a class="h" href="{% url 'list-faq' %}">Q&A</a></li>
+            <li><a class="h" id="aboutNav" href="{% url 'blog-home' %}">Blogs</a></li>
+            
+            {% if user.is_authenticated %}
+                  
+            <li><a class="h" href="{% url 'profile'%}" style="margin: 20px 0 0 0;">{{request.user.username}}</a></li>
+              <li><a class="h" href="{% url 'logout'%}" style="margin: 20px 0 0 0;">logout</a></li>
+            {% else %}
+        <li><a class="h" href="{% url 'login'%}" style="margin: 20px 0 0 0;">Login</a></li>
+        {% endif %}
+		</ul>
+    
+    
+	</header>
+    <p style = "text-align: center;"><font size = "60px">Get various question papers & syllabus papers</font></p>
+
+     
+    <p> <font size = "5px">Syllabus Copies</font></p>
+    <table><th style =" background-color: #cc99cc;">I YEAR</th></table>
+    <div class="row">
+    <div class="column">
+        <table id = "t1">
+        <tr style = "background-color: #e6a8d7;">
+            <th colspan = "3">Sem 1</th>
+        </tr>
+        <tr>
+            <td>Mathematics - 1 </td>
+            <td>
+                <div class="dropdown">
+                    <a class="dropbtn">Download</a>
+                    <div class="dropdown-content">
+                    <a href="{% static 'pdf/SRS.docx' %}">M1</a>
+                    </div>
+                </div>
+            </td>           
+        </tr>
+        <tr>
+            <td>Chemistry </td>
+            <td>
+                <div class="dropdown">
+                    <a class="dropbtn">Download</a>
+                    <div class="dropdown-content">
+                    <a href="{% static 'pdf/Chemistry.pdf' %}">Chemistry</a>
+                    </div>
+                </div>
+            </td>  
+        </tr>
+        <tr>
+            <td>Basic Electrical Engineering </td>
+            <td>
+                <div class="dropdown">
+                    <a class="dropbtn">Download</a>
+                    <div class="dropdown-content">
+                    <a href="{% static 'pdf/BEE.pdf' %}">BEE</a>
+                    </div>
+                </div>
+            </td>  
+        </tr>
+        <tr>
+            <td>English </td>
+            <td>
+                <div class="dropdown">
+                    <a class="dropbtn">Download</a>
+                    <div class="dropdown-content">
+                    <a href="{% static 'pdf/SRS.docx' %}">English</a>
+                    </div>
+                </div>
+            </td>  
+        </tr>
+        </table>
+    </div>
+    <div class="column">
+        <table id = "t1">
+        <tr style = "background-color: #e6a8d7;">
+            <th colspan = "3">Sem 2</th>
+        </tr>
+        <tr>
+            <td>Mathematics - II</td>
+            <td>
+                <div class="dropdown">
+                    <a class="dropbtn">Download</a>
+                    <div class="dropdown-content">
+                    <a href="{% static 'pdf/SRS.docx' %}">Maths</a>
+                    </div>
+                </div>
+            </td>  
+        </tr>
+        <tr>
+            <td>Applied Physics </td>
+            <td>
+                <div class="dropdown">
+                    <a class="dropbtn">Download</a>
+                    <div class="dropdown-content">
+                    <a href="{% static 'pdf/AP.pdf' %}">AP</a>
+                    </div>
+                </div>
+            </td>  
+        </tr>
+        <tr>
+            <td>Programming for problem Solving </td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">PPS</a>
+                </div>
+            </div></td>
+        </tr>
+        </table>
+        
+    </div>
+    </div>
+    <table><th style =" background-color: #cc99cc;">II YEAR</th></table>
+    <div class="row">
+    <div class="column">
+        <table id = "t1">
+        <tr style = "background-color: #e6a8d7;">
+            <th colspan = "3">Sem 1</th>
+        </tr>
+        <tr>
+            <td>Analog and Digital Electronics </td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/ADE.pdf' %}">ADE</a>
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Computer Organization and Architecture </td>
+            <td> <div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/COA Questions.pdf' %}">COA</a>
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Computer Oriented Statistical Methods</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/COSM.pdf' %}">COSM</a>
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Data Structures</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">DM</a>
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Object Oriented Programming Using C++</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">C++</a>
+                </div>
+            </div></td>
+        </tr>
+        </table>
+    </div>
+    <div class="column">
+        <table id = "t1">
+        <tr style = "background-color: #e6a8d7;">
+            <th colspan = "3">Sem 2</th>
+        </tr>
+        <tr>
+            <td>Business Economics & Financial Analysis</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">BEFA</a>
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Database Management Systems</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">DBMS</a>
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Discrete Mathematics</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/DMsyl.pdf' %}">DM</a>
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Java Programming</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">JAVA</a>
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Operating Systems</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">OS</a>
+                </div>
+            </div></td>
+        </tr>
+        </table>
+        </div>
+    </div>    
+        <table><th style =" background-color: #cc99cc;">III YEAR</th></table>
+    <div class="row">
+    <div class="column">
+        <table id = "t1">
+        <tr style = "background-color: #e6a8d7;">
+            <th colspan = "3">Sem 1</th>
+        </tr>
+        <tr>
+            <td>Computer Graphics</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">CG</a>
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Computer Networks</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">CN</a>
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Formal Languages & Automata Theory </td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">FLAT</a>
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Principles Of Programming Languages</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">PPL</a>
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Software Engineering</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">SE</a>
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Web Technologies</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/WT.pdf' %}">WT</a>
+                </div>
+            </div></td>
+        </tr>
+        </table>
+    </div>
+    <div class="column">
+        <table id = "t1">
+        <tr style = "background-color: #e6a8d7;">
+            <th colspan = "3">Sem 2</th>
+        </tr>
+        <tr>
+            <td>Compiler Design</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/CD.pdf' %}">CD</a>
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Design & Analysis Of Algorithms</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">DAA</a>
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Machine Learning</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">ML</a>
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Software Testing Methodologies</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">STM</a>
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Fundamentals Of Internet Of Things</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">FIOT</a>
+                </div>
+            </div></td>
+        </tr>
+        </table>
+        </div>
+    </div>
+        
+        <table><th style =" background-color: #cc99cc;">IV YEAR</th></table>
+    <div class="row">
+    <div class="column">
+        <table id = "t1">
+        <tr style = "background-color: #e6a8d7;">
+            <th colspan = "3">Sem 1</th>
+        </tr>
+        <tr>
+            <td>Cryptography & Network Security</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">CNS</a>
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Data Mining</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/DM.pdf' %}">DM</a>
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Cloud Computing</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/CC.pdf' %}">CC</a>
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Software Process & Project Management</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SPPM.pdf' %}">SPPM</a>
+                </div>
+            </div></td>
+        </tr>
+        </table>
+    </div>
+    <div class="column">
+        <table id = "t1">
+        <tr style = "background-color: #e6a8d7;">
+            <th colspan = "3">Sem 2</th>
+        </tr>
+        <tr>
+            <td>MSOrganizational Behaviour</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">MSOB</a>
+                </div>
+            </div></td>
+        </tr>
+        
+        </tr>
+        </table>
+        </div>
+    </div>
+        <p> <font size = "5px">Questions</font></p>
+        
+    <table><th style =" background-color: #cc99cc;">I YEAR</th></table>
+    <div class="row">
+    <div class="column">
+        <table id = "t1">
+        <tr style = "background-color: #e6a8d7;">
+            <th colspan = "3">Sem 1</th>
+        </tr>
+        <tr>
+            <td>Mathematics - 1 </td>
+            <td>
+                <div class="dropdown">
+                    <a class="dropbtn">Download</a>
+                    <div class="dropdown-content">
+                    <a href="{% static 'pdf/SRS.docx' %}">Unit 1</a>
+                    </div>
+                </div>
+            </td>           
+        </tr>
+        <tr>
+            <td>Chemistry </td>
+            <td>
+                <div class="dropdown">
+                    <a class="dropbtn">Download</a>
+                    <div class="dropdown-content">
+                    <a href="{% static 'pdf/Chemistry.pdf' %}">Chemistry</a>
+                    </div>
+                </div>
+            </td>  
+        </tr>
+        <tr>
+            <td>Basic Electrical Engineering </td>
+            <td>
+                <div class="dropdown">
+                    <a class="dropbtn">Download</a>
+                    <div class="dropdown-content">
+                    <a href="{% static 'pdf/BEE.pdf' %}">BEE</a>
+                    </div>
+                </div>
+            </td>  
+        </tr>
+        <tr>
+            <td>English </td>
+            <td>
+                <div class="dropdown">
+                    <a class="dropbtn">Download</a>
+                    <div class="dropdown-content">
+                    <a href="{% static 'pdf/SRS.docx' %}">English</a>
+                    </div>
+                </div>
+            </td>  
+        </tr>
+        </table>
+    </div>
+    <div class="column">
+        <table id = "t1">
+        <tr style = "background-color: #e6a8d7;">
+            <th colspan = "3">Sem 2</th>
+        </tr>
+        <tr>
+            <td>Mathematics - II</td>
+            <td>
+                <div class="dropdown">
+                    <a class="dropbtn">Download</a>
+                    <div class="dropdown-content">
+                    <a href="{% static 'pdf/SRS.docx' %}">Maths</a>
+                    </div>
+                </div>
+            </td>  
+        </tr>
+        <tr>
+            <td>Applied Physics </td>
+            <td>
+                <div class="dropdown">
+                    <a class="dropbtn">Download</a>
+                    <div class="dropdown-content">
+                    <a href="{% static 'pdf/AP.pdf' %}">AP</a>
+                    </div>
+                </div>
+            </td>  
+        </tr>
+        <tr>
+            <td>Programming for problem Solving </td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">PPS</a>
+                </div>
+            </div></td>
+        </tr>
+        </table>
+        
+    </div>
+    </div>
+    <table><th style =" background-color: #cc99cc;">II YEAR</th></table>
+    <div class="row">
+    <div class="column">
+        <table id = "t1">
+        <tr style = "background-color: #e6a8d7;">
+            <th colspan = "3">Sem 1</th>
+        </tr>
+        <tr>
+            <td>Analog and Digital Electronics </td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">ADE</a>
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Computer Organization and Architecture </td>
+            <td> <div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/COA Questions.pdf' %}">COA</a>
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Computer Oriented Statistical Methods</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">COSM</a>
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Data Structures</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">DM</a>
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Object Oriented Programming Using C++</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">C++</a>
+                </div>
+            </div></td>
+        </tr>
+        </table>
+    </div>
+    <div class="column">
+        <table id = "t1">
+        <tr style = "background-color: #e6a8d7;">
+            <th colspan = "3">Sem 2</th>
+        </tr>
+        <tr>
+            <td>Business Economics & Financial Analysis</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">BEFA</a>
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Database Management Systems</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">DBMS</a>
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Discrete Mathematics</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">DM</a>
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Java Programming</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">JAVA</a>
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Operating Systems</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">OS</a>
+                </div>
+            </div></td>
+        </tr>
+        </table>
+        </div>
+    </div>    
+        <table><th style =" background-color: #cc99cc;">III YEAR</th></table>
+    <div class="row">
+    <div class="column">
+        <table id = "t1">
+        <tr style = "background-color: #e6a8d7;">
+            <th colspan = "3">Sem 1</th>
+        </tr>
+        <tr>
+            <td>Computer Graphics</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">CG</a>
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Computer Networks</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">CN</a>
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Formal Languages & Automata Theory </td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">FLAT</a>
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Principles Of Programming Languages</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">PPL</a>
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Software Engineering</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">SE</a>
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Web Technologies</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">WT</a>
+                </div>
+            </div></td>
+        </tr>
+        </table>
+    </div>
+    <div class="column">
+        <table id = "t1">
+        <tr style = "background-color: #e6a8d7;">
+            <th colspan = "3">Sem 2</th>
+        </tr>
+        <tr>
+            <td>Compiler Design</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">CD</a>
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Design & Analysis Of Algorithms</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">DAA</a>
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Machine Learning</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">ML</a>
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Software Testing Methodologies</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">STM</a>
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Fundamentals Of Internet Of Things</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">FIOT</a>
+                </div>
+            </div></td>
+        </tr>
+        </table>
+        </div>
+    </div>
+        
+        <table><th style =" background-color: #cc99cc;">IV YEAR</th></table>
+    <div class="row">
+    <div class="column">
+        <table id = "t1">
+        <tr style = "background-color: #e6a8d7;">
+            <th colspan = "3">Sem 1</th>
+        </tr>
+        <tr>
+            <td>Cryptography & Network Security</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">CNS</a>
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Data Mining</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/DM.pdf' %}">DM</a>
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Cloud Computing</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/CC.pdf' %}">CC</a>
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td>Software Process & Project Management</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SPPM.pdf' %}">SPPM</a>
+                </div>
+            </div></td>
+        </tr>
+        </table>
+    </div>
+    <div class="column">
+        <table id = "t1">
+        <tr style = "background-color: #e6a8d7;">
+            <th colspan = "3">Sem 2</th>
+        </tr>
+        <tr>
+            <td>MSOrganizational Behaviour</td>
+            <td><div class="dropdown">
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                <a href="{% static 'pdf/SRS.docx' %}">MSOB</a>
+                </div>
+            </div></td>
+        </tr>
+        
+        </tr>
+        </table>
+        </div>
+    </div>
+</body>
+</html>

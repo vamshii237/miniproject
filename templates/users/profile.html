@@ -1,0 +1,111 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Vealize | Visualize Everything at one place</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://kit.fontawesome.com/0b1453f29b.js" crossorigin="anonymous"></script>
+	<link rel='icon' href='img/logo.png' type="image/png">
+	<meta property="og:type" content="website">
+    <meta property="og:url" content="https://vealize.my.to/">
+    <meta property="og:title" content="Vealize | Visualize Everything at one place">
+    <meta property="og:description" content="Vealize is a website which provides free tools that can help user visualize different and unique things.">
+    <meta property="og:image" content="img/page1.png">
+	<meta name="twitter:card" content="summary_large_image">
+    <style>
+        .edit-btn{
+            background-color:#ff0158;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer; border-radius: 40px;">
+
+        }
+    </style>
+    
+</head>
+<body>
+    <header class="header">
+		<h1>Rankers choice</h1>
+		<ul>
+			<li><a class="h active" id="homeNav" href="{% url 'home' %}">Home</a></li>
+            <li><a class="h" href="{% url 'enotes' %}">Enotes</a></li>
+            <li><a class="h" href="{% url 'question' %}">Question</a></li>
+            <li><a class="h" href="{% url 'list-faq' %}">Q&A</a></li>
+            <li><a class="h" id="aboutNav" href="{% url 'blog-home' %}">Blogs</a></li>
+            
+            {% if user.is_authenticated %}
+                  
+            <li><a class="h" href="{% url 'profile'%}" style="margin: 20px 0 0 0;">{{request.user.username}}</a></li>
+              <li><a class="h" href="{% url 'logout'%}" style="margin: 20px 0 0 0;">logout</a></li>
+            {% else %}
+        <li><a class="h" href="{% url 'login'%}" style="margin: 20px 0 0 0;">Login</a></li>
+        {% endif %}
+		</ul>
+    
+    
+	</header>
+    <table style = "margin-left: auto; margin-right: auto; border-spacing: 40px">
+        <tr>
+            <td>
+                <h1>Hi &ensp;{{ user.username }}!</h1>
+            </td>
+        </tr>
+        <tr>
+            <td>
+             <b>  Email:</b> &ensp;&ensp;&ensp;&ensp; &ensp;&ensp;  {{ user.email }}
+            </td>
+               
+        </tr>
+        <tr>
+            <td>
+                <b>Year :</b> &ensp;&ensp;&ensp;&ensp; &ensp;&ensp; &ensp;&ensp;  {{ user.year }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <small class="text-muted">
+                    <a class="edit-btn" href="{% url 'edit-profile' %}">Edit details</a>
+                </small>
+            </td>
+        </tr>
+        
+    </table>
+    <ul>
+        <!-- Iterate over object_list -->
+        {% for object in object_list %}
+        <!-- Display Objects -->
+        <div>
+            <table class = "myblogs" style = "margin-left: auto; margin-right: auto; text-align: center;  border-collapse: separate;
+            border-spacing: 0 15px;">
+                <tr>
+                    <td>
+                        <a href="{% url 'blog-home' %}{{object.slug}}">{{ object.title }}</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <small>author: {{ object.author }}</small><small> on: {{object.created_at}}</small>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 90px;">  <!-- If object_list is empty  --> 
+                        {% empty %}
+                       &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+                       &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+                       &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;create blogs to see here.
+                        {% endfor %}
+                        <a href="{% url 'post_creation' %}" >create new blog</a>
+
+                    </td>
+                </tr>
+            </table>
+        </div>    
+</body></html>

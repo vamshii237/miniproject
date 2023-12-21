@@ -1,0 +1,98 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Readers Choice | All notes at one place</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://kit.fontawesome.com/0b1453f29b.js" crossorigin="anonymous"></script>
+	<link rel='icon' href='img/logo.png' type="image/png">
+	<meta property="og:type" content="website">
+    <meta property="og:url" content="https://vealize.my.to/">
+    <meta property="og:title" content="Vealize | Visualize Everything at one place">
+    <meta property="og:description" content="Vealize is a website which provides free tools that can help user visualize different and unique things.">
+    <meta property="og:image" content="img/page1.png">
+	<meta name="twitter:card" content="summary_large_image">
+
+    <style>
+        .edit-btn{
+            background-color:#ff0158;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer; border-radius: 40px;">
+
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+		<h1>Rankers choice</h1>
+		<ul>
+			<li><a class="h active" id="homeNav" href="{% url 'home' %}">Home</a></li>
+            <li><a class="h" href="{% url 'enotes' %}">Enotes</a></li>
+            <li><a class="h" href="{% url 'question' %}">Question</a></li>
+            <li><a class="h" href="{% url 'list-faq' %}">Q&A</a></li>
+            <li><a class="h" id="aboutNav" href="{% url 'blog-home' %}">Blogs</a></li>
+            
+            {% if user.is_authenticated %}
+                  
+            <li><a class="h" href="{% url 'profile'%}" style="margin: 20px 0 0 0;">{{request.user.username}}</a></li>
+              <li><a class="h" href="{% url 'logout'%}" style="margin: 20px 0 0 0;">logout</a></li>
+            {% else %}
+        <li><a class="h" href="{% url 'login'%}" style="margin: 20px 0 0 0;">Login</a></li>
+        {% endif %}
+		</ul>
+    
+    
+	</header>
+    <div class="content-section">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+           
+                <legend class="border-bottom mb-4"><h1 style = "text-align: center;" >Create Your blog here!</h1></legend>
+               
+                <table style="text-align: center; margin-left: auto; margin-right: auto; margin-top: 80px; border-spacing: 30px;">
+                    <tr>
+                        <td>
+                            <label for="id_title">Title of Blog:</label>
+                        </td>
+                        <td>
+                            <input type="text" name="title" maxlength="300" required id="id_title" size = "67px"> 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="id_content" >Content of the Blog:</label>
+                        </td>
+                        <td>
+                            <textarea name="content" cols="70" rows="10" required id="id_content" size="90px"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Add Images:
+                        </td>
+                        <td>
+                            <input type="file" name="images" multiple>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button class="edit-btn" name="Publish" type="submit">Publish</button>
+                            
+                        </td>
+                        <td>
+                            <button class="edit-btn" name="Draft" type="submit">Save to draft</button>
+                        </td>
+                    </tr>
+                </table>
+        </form>
+        
+    </div>

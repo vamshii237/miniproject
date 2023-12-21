@@ -1,0 +1,96 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Vealize | Visualize Everything at one place</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://kit.fontawesome.com/0b1453f29b.js" crossorigin="anonymous"></script>
+	<link rel='icon' href='img/logo.png' type="image/png">
+	<meta property="og:type" content="website">
+    <meta property="og:url" content="https://vealize.my.to/">
+    <meta property="og:title" content="Vealize | Visualize Everything at one place">
+    <meta property="og:description" content="Vealize is a website which provides free tools that can help user visualize different and unique things.">
+    <meta property="og:image" content="img/page1.png">
+	<meta name="twitter:card" content="summary_large_image">
+    <style>
+        table {
+            margin-left: auto; 
+            margin-right: auto; 
+            width: 50%;
+            border: 1px solid black; 
+            border-collapse: separate;
+            border-spacing: 10px 30px;
+        }
+    </style>
+</head>
+<body>
+	<header class="header">
+		<h1>Rankers choice</h1>
+		<ul>
+			<li><a class="h active" id="homeNav" href="{% url 'home' %}">Home</a></li>
+            <li><a class="h" href="{% url 'enotes' %}">Enotes</a></li>
+            <li><a class="h" href="{% url 'question' %}">Question</a></li>
+            <li><a class="h" href="{% url 'list-faq' %}">Q&A</a></li>
+            <li><a class="h" id="aboutNav" href="{% url 'post_creation' %}">Add Blog</a></li>
+            
+            {% if user.is_authenticated %}
+                  
+            <li><a class="h" href="{% url 'profile'%}" style="margin: 20px 0 0 0;">{{request.user.username}}</a></li>
+              <li><a class="h" href="{% url 'logout'%}" style="margin: 20px 0 0 0;">logout</a></li>
+            {% else %}
+        <li><a class="h" href="{% url 'login'%}" style="margin: 20px 0 0 0;">Login</a></li>
+        {% endif %}
+		</ul>
+    
+	</header>
+    <p style = "text-align: center; font-size: 40px;"> Welcome to Blogs!</p>
+
+
+    <div class="content-section">
+        {% for obj in page_obj.object_list %}
+        
+            <div style = "text-align: center;">
+                <table>
+                    <tr>
+                        <th><h1>{{obj.title}}</h1> posted by: {{obj.author}}</th>
+                    </tr>
+                <tr>
+                    <td>
+                        {{obj.content}}
+                    </td>
+                </tr>
+                <tr><td ><a href="{{obj.slug}}">View More</a></td></tr>
+                </table>
+            </div>
+         {% endfor %}
+    </div>
+    <center>
+        {%if page_obj.has_previous %} {# whether the previous page exists #}
+            <a href="?page={{page_obj.previous_page_number}}"><</a> {# link to the prev page #}
+        {% endif %}
+        <span>{{page_obj.number}}</span> {# the current page number #}
+        
+        {%if page_obj.has_next %} {# whether the next page exists #}
+            <a href="?page={{page_obj.next_page_number}}">></a> {# link to the next page #}
+        {% endif %}
+    </center>
+    <!--div class="content-section">
+        {% for obj in object_list  %}
+            <div style = "text-align: center;">
+                <table>
+                    <tr>
+                        <th><h1>{{obj.title}}</h1> posted by--{{obj.author}}</th>
+                    </tr>
+                   <tr>
+                    <td>
+                        {{obj.content}}
+                    </td>
+                   </tr>
+                   <tr><td ><a href="{{obj.slug}}">View More</a></td></tr>
+                </table>
+            </div>
+        {% endfor %}
+        
+    </div-->

@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Readers Choice | All notes at one place</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://kit.fontawesome.com/0b1453f29b.js" crossorigin="anonymous"></script>
+        
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://vealize.my.to/">
+        <meta property="og:title" content="Vealize | Visualize Everything at one place">
+        <meta property="og:description" content="Vealize is a website which provides free tools that can help user visualize different and unique things.">
+        <meta property="og:image" content="img/page1.png">
+        <meta name="twitter:card" content="summary_large_image">
+    </head>
+    <body>
+        <header class="header">
+            <h1>Rankers choice</h1>
+            <ul>
+                <li><a class="h active" id="homeNav" href="{% url 'home' %}">Home</a></li>
+                <li><a class="h" href="{% url 'enotes' %}">Enotes</a></li>
+
+                <li><a class="h" href="{% url 'question' %}">Question</a></li>
+                <li><a class="h" href="{% url 'list-faq' %}">Q&A</a></li>
+                <li><a class="h" id="aboutNav" href="{% url 'blog-home' %}">Blogs</a></li>
+
+
+
+                {% if user.is_authenticated %}
+                  
+                <li><a class="h" href="{% url 'profile'%}" style="margin: 20px 0 0 0;">{{request.user.username}}</a></li>
+                  <li><a class="h" href="{% url 'logout'%}" style="margin: 20px 0 0 0;">logout</a></li>
+                {% else %}
+            <li><a class="h" href="{% url 'login'%}" style="margin: 20px 0 0 0;">Login</a></li>
+            {% endif %}            </ul>
+        
+        </header>
+        
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+        <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% block content %}{% endblock %}
+</body>
+</html>

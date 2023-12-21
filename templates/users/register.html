@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<!-- Created By CodingNepal -->
+<html lang="en" dir="ltr">
+   <head>
+    <meta name="csrf_token" content="{{ csrf_token }}">
+      <meta charset="utf-8">
+      <title>Register</title>
+      <link rel="stylesheet" href="{% static 'users/login.css' %}">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   </head>
+   
+   <body>
+      <div class="center">
+        {% if form.errors %}
+        
+            <input type="checkbox" checked="checked" id="show">
+         {% else %}
+            <input type="checkbox"  id="show">
+         {% endif %}
+
+         <div class="container">
+            <div class="text">
+              Registration Form
+            </div>
+            <!--{% for error in form.errors %}
+                <p style="color:red">{{ form.errors|striptags }}</p>
+            {% endfor %}
+            {% if form.errors %}-->
+            <!-- Error messaging -->
+            <!--div id="errors">
+                <div class="inner">
+                    <p>There were some errors in the information you entered. Please correct the following:</p>
+                    
+                        {% for field in form %}
+                            {% if field.errors %}<p style="color:red">{{ field.label }}: {{ field.errors|striptags }}</p>{% endif %}
+                        {% endfor %}
+                    
+                </div>
+            </div-->
+            <!-- /Error messaging -->
+        <!--{% endif %}-->
+    <form method="POST">
+        {% csrf_token %}
+            <div class="data">
+{{form.errors|striptags}}
+                <label for="id_username">Username:</label>
+                <input type="text" name="username" autofocus autocapitalize="none" autocomplete="username" maxlength="150" required id="id_username">
+                <p class="errors">{{ form.username.errors|striptags }}</p><br>
+             </div>
+             <div class="data">
+                <label for="id_email">Email Address</label>
+                <input type="text" name="email" autocomplete="email" required id="id_email">
+                <p class="errors">{{ form.email.errors|striptags }}</p><br>
+             </div>
+             <div class="data">
+                <label for="id_year">Year</label>
+                  <select name="year" autocomplete="year" required id="id_year">
+                    <option value=1>First</option>
+                    <option value=2>Second</option>
+                    <option value=3>Third</option>
+                    <option value=4>Fourth</option>
+                  </select>
+
+             </div>
+             <div class="data">
+                <label for="id_password">Password</label>
+    <input type="password" name="password1" autocomplete="new-password" required id="id_password1">
+                {{ form.password.errors|striptags }}
+             </div>
+             <div class="data">
+                <label for="id_password">Password Confirmation</label>
+    <input type="password" name="password2" autocomplete="new-password" required id="id_password2">
+             </div>
+
+        
+             <div class="btn">
+                <div class="inner"></div>
+                <button type="submit">Register</button>
+             </div>
+    </form>
+    <div class="border-top pt-3">
+        <div class="signup-link">
+            Already Have An Account? <a href="{% url 'login' %}">Sign In</a>
+         </div>
+    </div>

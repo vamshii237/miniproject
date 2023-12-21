@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<ul>
+    <!-- Iterate over object_list -->
+    {% for object in object_list %}
+    <!-- Display Objects -->
+    <a href="{% url 'blog-home' %}{{object.slug}}">
+        <li>{{ object.title }}</li>
+        <small>author: {{ object.author }}</small><small> on: {{object.created_at}}</small>
+    </a>
+   
+    <hr/>
+    <!-- If object_list is empty  -->
+    {% empty %}
+    <li>create blogs to see here.</li>
+    {% endfor %}
+    <a href="{% url 'post_creation' %}" >create new blog</a>
+    
+</ul>
+{% endblock content %}

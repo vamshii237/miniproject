@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Vealize | Visualize Everything at one place</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://kit.fontawesome.com/0b1453f29b.js" crossorigin="anonymous"></script>
+	<link rel='icon' href='img/logo.png' type="image/png">
+	<meta property="og:type" content="website">
+    <meta property="og:url" content="https://vealize.my.to/">
+    <meta property="og:title" content="Vealize | Visualize Everything at one place">
+    <meta property="og:description" content="Vealize is a website which provides free tools that can help user visualize different and unique things.">
+    <meta property="og:image" content="img/page1.png">
+	<meta name="twitter:card" content="summary_large_image">
+
+    <style>
+        .edit-btn{
+            background-color:#ff0158;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer; border-radius: 40px;">
+
+        }
+    </style>
+</head>
+<body>
+	<!--header class="header">
+		<h1>Rankers choice</h1>
+		<ul>
+			<li><a class="h active" id="homeNav" href="#">Home</a></li>
+			<li><a class="h" id="aboutNav" href="#choose">About</a></li>
+			<li><a class="h" id="featuresNav"href="#features">Features</a></li>
+			<li><a class="h" id="contactNav" href="#contact">Contact</a></li>
+      <li><a class="h" href="{% url 'login'%}" style="margin: 20px 0 0 0;">Login</a></li>
+		</ul>
+    
+	</header-->
+    <form method="POST">
+        {% csrf_token %}
+            <table style = "margin-left: auto; margin-right: auto; border-spacing: 20px;">
+                <tr>
+                    <td colspan="2" style="text-align: center;">
+                        <legend class="border-bottom mb-4"><h1>Edit Profile</h1></legend>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label for="id_username">Username:</label>
+                    </th>
+                    <td>
+                        <input type="text" name="username" value="admin" maxlength="150" required id="id_username" size = "40px">
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <span class="helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label for="id_email">Email address:</label>
+                    </th>
+                    <td>
+                        <input type="email" name="email" value="test@test.com" maxlength="254" required id="id_email" size = "40px">
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label for="id_year">Year:</label>
+                    </th>
+                    <td>
+                        <input type="number" name="year" value="1" required id="id_year" size = "40px" min="1" max="4">
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label>Password:</label>
+                    </th>
+                    <td>
+                        <input type="password" size = "40px"></input>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">
+                        <strong>No password set.</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: center;">
+                        <span class="helptext">Raw passwords are not stored, so there is no way to see this user’s password, but you can change the password using <a href="../password/">this form</a>.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan = "2" style="text-align: center;">
+                        <div class="form-group">
+                        <button class="edit-btn" name="Publish" type="submit">Save</button>
+                        <small class="text-muted">
+                            <a class = "edit-btn" href="{% url 'profile' %}"><-Back</a>
+                        </small>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
+{% endblock %}
